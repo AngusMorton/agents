@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "skills": {
+    "gh-stack": {
+      "source": "github/gh-stack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/github/gh-stack.git",
+      "skillPath": "skills/gh-stack/SKILL.md",
+      "skillFolderHash": "6bfe555e89a6b264e09d5ece7c4040226458c8e5",
+      "installedAt": "2026-09-21T05:24:29Z",
+      "updatedAt": "2026-09-21T05:25:04Z"
+    },
+    "writing-for-agents": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/productivity/writing-for-agents/SKILL.md",
+      "skillFolderHash": "ad2925850efb8973a72d2e666f7a975f9a2d4a9b",
+      "installedAt": "2026-08-21T02:16:04.001Z",
+      "updatedAt": "2026-08-21T02:16:04.001Z"
+    },
+    "sentry-cli": {
+      "source": "cli.sentry.dev",
+      "sourceType": "well-known",
+      "sourceUrl": "https://cli.sentry.dev/.well-known/skills/sentry-cli/SKILL.md",
+      "skillFolderHash": "",
+      "sourceBaseUrl": "https://cli.sentry.dev",
+      "wellKnownDigest": "sha256:4dfbed84492c278cc6ee0919e82af19c69632a11b615eb3c3da02cdb436bd2d8",
+      "installedAt": "2026-09-29T03:12:05.893Z",
+      "updatedAt": "2026-09-29T03:12:05.893Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "cline",
+    "codex",
+    "cursor",
+    "droid",
+    "gemini-cli",
+    "github-copilot",
+    "kilo",
+    "kimi-code-cli",
+    "opencode",
+    "warp",
+    "zed",
+    "claude-code"
+  ]
+}
