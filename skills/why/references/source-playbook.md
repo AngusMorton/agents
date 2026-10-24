@@ -9,7 +9,7 @@ The why skill spawns one investigator per available evidence category, each read
 | Infrastructure observability | [`datadog.md`](./sources/datadog.md) | Datadog (adapt for New Relic, Honeycomb, Grafana, Splunk) |
 | Error / exception tracking | [`sentry.md`](./sources/sentry.md) | Sentry (adapt for Rollbar, Bugsnag, Airbrake) |
 
-Issue / ticket tracker, long-form documents, and product analytics warehouse have no playbook. Those investigators get the base prompt only. For Rome2Rio's BigQuery and Looker, have the warehouse investigator load the `rome2rio-data` skill.
+Issue / ticket tracker, long-form documents, and product analytics warehouse have no playbook. Those investigators get the base prompt only.
 
 Cross-cutting:
 
