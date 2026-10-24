@@ -7,9 +7,16 @@ description: Monitor a pull request through review and CI. Use when a user asks 
 
 All the repos we work on have various AI code review bots for code review. They're helpful, even if they're not always right.
 
-If your harness offers tools to monitor a PR, use them so you can respond when comments arrive. Otherwise, poll the PR for new comments and checks.
+If your harness offers tools to monitor a PR, use them so you can respond when comments arrive. Otherwise, poll the PR for new comments and checks. 
 
-Only act on checks and comments newer than the latest push. Verify every bot finding against the source before changing code. Fix real findings and CI failures, distinguish repository failures from infrastructure flakes. Reply with a concise written reason when dismissing a false positive from an AI review bot. Never reply to feedback from a human.
+A few guidelines for handling checks and comments:
+* Only act on checks and comments newer than the latest push. 
+* Verify every bot finding before changing code. 
+* Reproduce reported bugs before changing code.
+* Theoretical findings about a state the code cannot reach should not be fixed.
+* Apply `principle-fix-root-causes` when addressing issues.
+
+Fix real findings and CI failures, distinguish repository failures from infrastructure flakes. Reply with a concise written reason when dismissing a false positive from an AI review bot. Never reply to feedback from a human.
 
 If a review bot leaves feedback you believe is not worth addressing, reply and resolve the comment. Format comments left on the user's behalf like this example, with the model ID as plain text. Use your own model ID and the GitHub username of the user you're acting for:
 

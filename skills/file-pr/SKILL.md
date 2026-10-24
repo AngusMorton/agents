@@ -61,6 +61,8 @@ BAD
 GOOD
 > ✅ The "new worktree" default was ignored when starting new threads on existing worktrees, which was unintuitive. Now user preferences always apply.
 
+Include screenshots in the PR description for UI changes, before/after screenshots are very helpful for reviewers.
+
 Open a draft PR and request a review from Copilot, then comment "@codex review" to request a review from Codex.
 
 If the branch has a failing-test commit followed by its fix, open the PR with only the failing-test commit. Push the fix after CI shows it red, as the `principle-sequence-verifiable-units` skill describes. Request the reviews only after the fix is pushed, so the bots review the whole change.
