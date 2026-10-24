@@ -1,6 +1,6 @@
 ---
 name: engineering-principles
-description: "Entry point for how we do engineering. Use at the start of any coding task or when you're unsure how we approach a kind of work."
+description: "Entry point for how we do engineering. Use at the start of any coding task when writing  or reading code."
 ---
 
 # Engineering principles
