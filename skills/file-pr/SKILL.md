@@ -58,7 +58,7 @@ BAD
 GOOD
 > The "new worktree" default was ignored when starting new threads on existing worktrees, which was unintuitive. Now user preferences always apply.
 
-Include screenshots in the PR description for UI changes, before/after screenshots are very helpful for reviewers.
+Include screenshots in the PR description for UI changes, before/after screenshots are very helpful for reviewers. Always use the `gh` CLI to attach files (--attach).
 
 Open a draft PR and request a review from Copilot, then comment "@codex review" to request a review from Codex.
 
