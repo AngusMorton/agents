@@ -23,11 +23,18 @@ Load `engineering-principles` and read the principle files for every section tha
 
 ## 3. Make the change
 
-Make the smallest change that meets the goal, with focused tests. Run the repo's format, lint, type-check, test, and build commands until they pass.
+Make the smallest change that meets the goal, with focused tests, then run the `simplify` skill on your diff to identify opportunities for simplification and code clean up.
 
-## 4. Simplify, then review
+Run the repo's format, lint, type-check, test, and build commands until they pass.
 
-Run `/simplify` on the full diff against `origin/main`. Then run `/code-review` on the result, and check the diff against the "Reviewing code" section of `engineering-principles`. Check each finding against the code before you fix it. Rerun the step 3 checks after each.
+## 4. Review Loop
+
+1. Check the diff against the "Reviewing code" section of `engineering-principles`
+2. Request a code review by delegating to Codex 6.1 Sol through T3 Code, or `/code-review` if 6.1 Sol is unavailable.
+
+Check each finding against the code before you fix it. Don't fix issues raised unless you can prove/reproduce the issue.
+
+Repeat this step at most 3 times until the code review agent approves the change. 
 
 ## 5. Prove it works
 
@@ -56,4 +63,4 @@ Don't merge. Reply with:
 
 - The PR link.
 - How you proved each outcome, and any outcome you couldn't prove.
-- What `/simplify` and `/code-review` changed, and the findings you dismissed.
+- What `/simplify` and the Review Loop changed, and the findings you dismissed and why.
