@@ -7,7 +7,7 @@ description: "Rome2rio's rules for a code change that ends in a pull request: pr
 
 These are the rules for changing production code at Rome2rio. Every rule you must follow is on this page. The two files under `references/` are catalogues, and each link says when to open its file.
 
-Read "Every change" for every task. Then read each later section that matches the task. Most tasks match more than one.
+First name the kind of task, because a bug fix and a feature follow different rules. "Every change" applies to every kind. Then apply each later section that matches: a bug fix, new types, tests, a migration, code that retries, a refactor, or a review. A feature usually matches "Designing types and data" and "Writing or changing tests".
 
 Some rules pull against each other. Where they do, the rule gives a default and the condition under which the default gives way.
 
@@ -19,23 +19,11 @@ Before you call a change done, check the result in the place where each consumer
 
 - Run the real thing: the app on a device or emulator, the endpoint in an ephemeral environment, the dbt model on the dev target. Read the actual value, not a cached or derived copy.
 - Match the evidence to the change. For UI, take before and after screenshots of the same screen in the same state. For a bug, capture the repro output before and after the fix. For data, show the real event payload or query result.
-- For a number, give the run count and the spread, and measure both sides the same way. Rule out what else explains the number: errors, a debug build compared with a release build, a warm start compared with a cold start, a BigQuery result served from cache.
+- For a number, give the run count and the spread. Measure the baseline before you make the change, and measure before and after the same way. Rule out what else explains the number: errors, a debug build compared with a release build, a warm start compared with a cold start, a BigQuery result served from cache.
 - Prefer a check that a reviewer can rerun, such as a test, a script, or a saved query. Paste the output.
 - You can read production data. Never write to production and never deploy to it. Query the smallest date range that answers the question, and check how many bytes a BigQuery query scans before you run it.
 - When a check fails and you don't expect it to, confirm that the check ran against your change before you edit code. A stale build on the device is a common cause.
 - If you can't reach the place where a consumer uses the result, ask the user for access. If an outcome stays unproven, say so. Don't describe it as tested.
-
-### Show red, then green
-
-When a fix has a test, commit the failing test first and the fix on top. When you open a PR, open it with only the test commit. After CI shows the test failing for the reported reason, push the fix. The reviewer sees the failure and then the pass, and doesn't have to take your word that the test covers the bug.
-
-Skip the test commit when the code has no cheap place for a test. The before and after repro output is then the proof.
-
-The same order works beyond bug fixes. Commit a refactor that changes no behavior before the feature that needs it. Capture a baseline measurement before the optimization.
-
-**Default.** Every commit builds and passes its checks, so a reviewer can read the PR commit by commit.
-
-**Gives way when** a commit fails on purpose. There are two cases. The first is the failing test that comes before its fix. The second is a migration step inside one PR, where you delete the old function first and use the compiler errors as the list of callers left to migrate. In both cases the last commit is green. A PR never merges red, and that includes each PR in a stack.
 
 ### Make the smallest change
 
@@ -61,6 +49,16 @@ A bug fix has a stricter rule. Change only what removes the root cause, even whe
 ## Fixing a bug
 
 The `fix-issue` skill has the step-by-step workflow. These rules apply with or without it.
+
+### Show red, then green
+
+When a fix has a test, commit the failing test first and the fix on top. When you open a PR, open it with only the test commit. After CI shows the test failing for the reported reason, push the fix. The reviewer sees the failure and then the pass, and doesn't have to take your word that the test covers the bug.
+
+The test commit is red on purpose. The PR is green before it merges.
+
+Skip the test commit when the code has no cheap place for a test. The before and after repro output is then the proof.
+
+This rule covers any bug fix, including a bug that you fix while you build a feature or answer a review finding. It doesn't cover a test for a new feature. That test fails only because the feature doesn't exist yet, so the red run shows a reviewer nothing.
 
 ### Fix the root cause
 
@@ -124,6 +122,10 @@ When you replace an API, migrate every caller and delete the old API in the same
 Then add the new path beside the old path and leave the old path working. State in the PR what must be true before the old path can go, such as traffic to the old endpoint reaching zero. Use the `blast-radius` skill to find callers outside the diff.
 
 For a change that repeats across many files, check each unit before you start the next one. A break then shows up at the unit that caused it.
+
+**Default.** Every commit builds and passes its checks, so a reviewer can read the PR commit by commit.
+
+**Gives way when** a migration step inside one PR breaks the build on purpose. You can delete the old function first and use the compiler errors as the list of callers left to migrate. The last commit is green. A PR never merges red, and that includes each PR in a stack.
 
 **Default.** Make the repeated edits by hand. A script is one more thing to write and review.
 
