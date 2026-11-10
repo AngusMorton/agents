@@ -15,6 +15,15 @@ Check the real thing, not a proxy:
 - Read the actual value, not a cached or derived representation
 - When verification fails, suspect the observation method before suspecting the system
 
+## Prove it where each consumer uses it
+
+The work is done when each consumer of the change gets the right result. Proof that your code sends the result is not enough. A consumer is any person or system that uses the result. For example, travellers use the app, and the data engineering team queries events in BigQuery. Check the result where each consumer uses it: the screen, the API response, or the table row.
+
+- Use an ephemeral environment, a test build, or test data.
+- You can read production data. Never write to production or deploy to it.
+- Query the smallest date range that answers the question. Before you run a production query, check how many bytes it scans.
+- If you can't reach a consumer's system, ask the user for access. If you still can't reach it, list that outcome as unproven.
+
 ## Script the check when you can
 
 The strongest proof is a deterministic script that re-runs the same comparison, not a one-time eyeball. Write the script, run it, and keep its output as an artifact a reviewer can re-run instead of trusting your word.

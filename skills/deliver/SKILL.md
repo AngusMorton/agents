@@ -11,7 +11,11 @@ When you brief another thread, write "Use `deliver`" instead of listing these st
 
 ## 1. Write down the goal
 
-Before you read code, restate the user's task as one to three outcomes a reviewer can check. For example: "Play Store links carry `web_aqid` in the referrer." Step 5 proves each outcome, and step 7 judges bot findings against them.
+Before you read code, restate the user's task as one to three outcomes a reviewer can check. For example: "Play Store links carry `web_aqid` in the referrer." 
+
+Write one outcome for each consumer of the change, and be specific about where that consumer sees the result. For example: "The data engineering team can join an install to its web session in the `events` table in BigQuery."
+
+Step 5 proves each outcome, and step 7 judges bot findings against them.
 
 ## 2. Load the skills that fit
 
