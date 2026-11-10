@@ -33,7 +33,7 @@ Run the repo's format, lint, type-check, test, and build commands until they pas
 
 ## 4. Review Loop
 
-1. Check the diff against the "Reviewing code" section of `engineering-principles`
+1. Check the diff against our `engineering-principles`.
 2. Request a code review by delegating to Codex 6.1 Sol through T3 Code, or `/code-review` if 6.1 Sol is unavailable.
 
 Check each finding against the code before you fix it. Don't fix issues raised unless you can prove/reproduce the issue.

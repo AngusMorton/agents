@@ -1,11 +1,11 @@
 ---
 name: engineering-principles
-description: "Rome2rio's rules for a code change that ends in a pull request: prove it works, commit the failing test before the fix, keep the diff small, and the exception to each rule. Use when you write, fix, refactor, migrate, test, or review production code. The `deliver` and `fix-issue` skills load it. Not for prototypes, one-off scripts, or questions about code. Incidents and team playbooks belong to `rome2rio-engineering`."
+description: "Rules for a code change that ends in a pull request: prove it works, commit the failing test before the fix, keep the diff small, and the exception to each rule. Use when you write, fix, refactor, migrate, test, or review production code."
 ---
 
 # Engineering principles
 
-These are the rules for changing production code at Rome2rio. Every rule you must follow is on this page. The two files under `references/` are catalogues, and each link says when to open its file.
+These are the rules for changing production code. Every rule you must follow is on this page.
 
 First, name the kind of task. A bug fix and a feature follow different rules. "Every change" applies to every task. Then apply each later section whose heading matches the task. Most tasks match more than one section. A feature usually matches "Designing types and data" and "Writing or changing tests".
 
@@ -112,22 +112,12 @@ When you write a test, or review a test whose assertion you doubt, read [Test sh
 
 **Exception.** Keep the old path when something that you can't change in this PR still uses it:
 
-- A backend endpoint or response field that shipped app versions call. Old iOS and Android builds keep calling it until travellers update.
+- A backend endpoint or response field that shipped app versions call. Old iOS and Android builds keep calling it until users update.
 - An analytics event, table, or column that a dbt model, a Looker dashboard, or another team reads.
 - A URL or deep link that is already public.
 - A Terraform module variable that another repo sets.
 
 In that case, add the new path and keep the old path working. State in the PR what must be true before someone can delete the old path, for example that no traffic reaches the old endpoint. Use the `blast-radius` skill to find callers outside the diff.
-
-When a change repeats across many files, apply it to one file, run the checks, and then start the next file. You then find each failure at the file that caused it.
-
-**Default.** Every commit builds and passes its checks, so a reviewer can read the PR commit by commit.
-
-**Exception.** A migration step inside one PR can break the build on purpose. For example, delete the old function first and use the compiler errors as the list of callers that you must migrate. The last commit must pass. Never merge a PR that fails CI, and that includes each PR in a stack.
-
-**Default.** Make the repeated edits by hand. A script is one more thing to write and review.
-
-**Exception.** Write a script or codemod when the same mechanical edit applies to about ten or more places, or when the script is itself the proof. Edit the first place by hand, script the rest, and include the script so that a reviewer can rerun it. Write the smallest script that does the job.
 
 ## Writing code that retries, reruns, or restarts
 
@@ -163,11 +153,3 @@ Use the `blast-radius` skill to find what the change breaks outside the diff. Wi
 3. Does it add a cast, a match that isn't exhaustive, or fields that can contradict each other? See "Model the domain in types".
 4. Would each new test still pass if the code under test did nothing? See "Test behavior, not implementation".
 5. Does it delete or change anything that a shipped app, another repo, or a dashboard still reads? See "Finish the migration".
-
-## Changing these principles
-
-Don't edit this skill or any other skill file unless the user asks you to. Propose the change in your reply.
-
-## Attribution
-
-Adapted from [pstack](https://github.com/cursor/plugins/tree/main/pstack) by Lauren Tan, under the MIT license. The license text is in [LICENSE-pstack.txt](LICENSE-pstack.txt).
