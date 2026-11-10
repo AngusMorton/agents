@@ -17,7 +17,7 @@ Confirm the faulty code is still on `origin/main`. Search open PRs and recent co
 
 Before you run anything, write down the correct behavior and the broken behavior in one sentence each. Then make the broken behavior happen.
 
-When the code path has a cheap test target, write a failing test first. Put it in the narrowest test layer that already covers that code, and don't build new test setup just to have a test. The test checks the intended behavior, not the current implementation. If the bug is flaky, make the test deterministic. Write it per [Test behavior, not implementation](../engineering-principles/principles/principle-test-behavior-not-implementation.md).
+When the code path has a cheap test target, write a failing test first. Put it in the narrowest test layer that already covers that code, and don't build new test setup just to have a test. The test checks the intended behavior, not the current implementation. If the bug is flaky, make the test deterministic. Write it per [Test behavior, not implementation](../engineering-principles/SKILL.md#test-behavior-not-implementation).
 
 Prefer no test over a bad one. A bad test mostly exercises mocks, depends on timing, or needs heavy setup for a small fix. Without a test, use the closest thing that runs the real code: a script, a `curl`, a CLI invocation, or the running app.
 
@@ -31,13 +31,13 @@ If it won't reproduce directly, synthesize the trigger, tighten the conditions, 
 
 ## 3. Find the root cause
 
-Apply [Fix root causes](../engineering-principles/principles/principle-fix-root-causes.md) throughout this step. List the candidate causes, then rule them out with evidence until one survives. If you don't know the subsystem, use the `how` skill on it first so the candidates come from how the code actually works. Each pass, test the split that rules out the most remaining candidates. Get evidence by running code, adding temporary logging, or reading the real value. Don't guess.
+Apply [Fix the root cause](../engineering-principles/SKILL.md#fix-the-root-cause) throughout this step. List the candidate causes, then rule them out with evidence until one survives. If you don't know the subsystem, use the `how` skill on it first so the candidates come from how the code actually works. Each pass, test the split that rules out the most remaining candidates. Get evidence by running code, adding temporary logging, or reading the real value. Don't guess.
 
 The line that throws is often not the line that's wrong. Keep asking why the bad state exists until you reach the code that created it. When the bug is a regression, or before you change defensive or odd-looking code, use the `why` skill on it. Scope it to source control and the error tracker unless the user asks for a wider search. The code may exist for a reason it doesn't show.
 
 ## 4. Make the smallest fix the evidence justifies
 
-Fix the bug where it starts, not where it surfaces. Keep the diff small, as the [Laziness protocol](../engineering-principles/principles/principle-laziness-protocol.md) describes. Don't add a null check, `try`/`catch`, or early return just to silence the error. Add one only when the evidence shows the missing value is a legitimate state.
+Fix the bug where it starts, not where it surfaces. Keep the diff small, as [Make the smallest change](../engineering-principles/SKILL.md#make-the-smallest-change) describes. Don't add a null check, `try`/`catch`, or early return just to silence the error. Add one only when the evidence shows the missing value is a legitimate state.
 
 Revert anything a disproven hypothesis motivated, including debug logging. Search the codebase for the same pattern. Fix the instances that share this root cause, and list the others in your reply.
 
@@ -45,7 +45,7 @@ If two fixes fail the same check, write down the assumption they share and test 
 
 ## 5. Prove it
 
-Check the real thing, not a proxy, as [Prove it works](../engineering-principles/principles/principle-prove-it-works.md) describes.
+Check the real thing, not a proxy, as [Prove it works](../engineering-principles/SKILL.md#prove-it-works) describes.
 
 1. Rerun the repro from step 2. It must now pass, on the same surface where it failed. An inconclusive result is not a pass.
 2. Run the tests, type checks, and lint for the code you touched.
@@ -54,7 +54,7 @@ Check the real thing, not a proxy, as [Prove it works](../engineering-principles
 
 ## 6. Hand back
 
-If you wrote a failing test, commit it before the fix so the history shows it failing first. Open a PR only when the user asks, and then use the `file-pr` skill. Before you push the fix, follow [Sequence verifiable units](../engineering-principles/principles/principle-sequence-verifiable-units.md) to show the test failing on CI.
+If you wrote a failing test, commit it before the fix so the history shows it failing first. Open a PR only when the user asks, and then use the `file-pr` skill. Before you push the fix, follow [Show red, then green](../engineering-principles/SKILL.md#show-red-then-green) to show the test failing on CI.
 
 Reply with:
 

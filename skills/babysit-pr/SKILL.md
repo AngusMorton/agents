@@ -14,7 +14,7 @@ A few guidelines for handling checks and comments:
 * Verify every bot finding before changing code. 
 * Reproduce reported bugs before changing code.
 * Theoretical findings about a state the code cannot reach should not be fixed.
-* Apply [Fix root causes](../engineering-principles/principles/principle-fix-root-causes.md) when addressing issues.
+* Apply [Fix the root cause](../engineering-principles/SKILL.md#fix-the-root-cause) when addressing issues.
 
 Fix real findings and CI failures, distinguish repository failures from infrastructure flakes. Reply with a concise written reason when dismissing a false positive from an AI review bot. Never reply to feedback from a human.
 

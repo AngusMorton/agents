@@ -19,7 +19,7 @@ Step 5 proves each outcome, and step 7 judges bot findings against them.
 
 ## 2. Load the skills that fit
 
-Load `engineering-principles` and read the principle files for every section that matches the task. Then load the skills that fit:
+Load `engineering-principles` and apply every section that matches the task. Then load the skills that fit:
 
 - For a bug, use `fix-issue`. Don't use it for features or config changes.
 - For a change to shared code, dependencies, or a data contract, use `blast-radius`.
@@ -42,7 +42,7 @@ Repeat this step at most 3 times until the code review agent approves the change
 
 ## 5. Prove it works
 
-Prove each outcome from step 1 on the final code, in the running artifact. Passing CI, a clean type check, and your reading of the diff are not proof. See [Prove it works](../engineering-principles/principles/principle-prove-it-works.md).
+Prove each outcome from step 1 on the final code, in the running artifact. Passing CI, a clean type check, and your reading of the diff are not proof. See [Prove it works](../engineering-principles/SKILL.md#prove-it-works).
 
 Match the evidence to the change:
 
