@@ -15,7 +15,7 @@ The most valuable thing Sentry provides is **temporal correlation**: "issue X wa
 
 ## How to search it
 
-Use the Sentry MCP. If none is authenticated, use the `sentry-cli` skill. The steps below map onto its issue, event, and release commands.
+Use the Sentry MCP. If none is authenticated, use the `sentry` CLI, and run `sentry --help` to find the command. The steps below map onto its issue, event, and release commands.
 
 1. **Orient.** If you don't know the project slug and organization:
 

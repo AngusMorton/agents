@@ -18,16 +18,6 @@
       "skillFolderHash": "ad2925850efb8973a72d2e666f7a975f9a2d4a9b",
       "installedAt": "2026-08-21T02:16:04.001Z",
       "updatedAt": "2026-08-21T02:16:04.001Z"
-    },
-    "sentry-cli": {
-      "source": "cli.sentry.dev",
-      "sourceType": "well-known",
-      "sourceUrl": "https://cli.sentry.dev/.well-known/skills/sentry-cli/SKILL.md",
-      "skillFolderHash": "",
-      "sourceBaseUrl": "https://cli.sentry.dev",
-      "wellKnownDigest": "sha256:4dfbed84492c278cc6ee0919e82af19c69632a11b615eb3c3da02cdb436bd2d8",
-      "installedAt": "2026-09-29T03:12:05.893Z",
-      "updatedAt": "2026-09-29T03:12:05.893Z"
     }
   },
   "dismissed": {

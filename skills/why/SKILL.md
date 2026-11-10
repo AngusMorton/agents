@@ -60,7 +60,7 @@ Capture this as seed context (file paths, symbols, commits, PR numbers, linked t
 
 ### Discovery
 
-Before spawning investigators, list the MCP servers available in this session. Skills that wrap a CLI (e.g. `sentry-cli`) count too. A server that still needs authentication is unavailable. Record it as a gap.
+Before spawning investigators, list the MCP servers available in this session. A CLI on the `PATH`, such as `sentry`, counts too. A server that still needs authentication is unavailable. Record it as a gap.
 
 Map each available MCP to one evidence category:
 
