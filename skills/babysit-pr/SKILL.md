@@ -26,9 +26,9 @@ If a review bot leaves feedback you believe is not worth addressing, reply and r
 Fixed in 1b7302f31. `save` and `remove` now return false when the write fails.
 ```
 
-Once you've acted on review feedback from a bot you will need to re-request a review from the bot that provided the feedback. So, if Copilot provided feedback you've acted on and pushed, re-request a review from only Copilot so it can provide another review. If Codex provided feedback you've acted on and pushed, re-request feedback from only Codex by commenting "@codex review".
+Once you've acted on review feedback from a bot you will need to re-request a review from the bot that provided the feedback. If Copilot provided feedback you've acted on or pushed back on, re-request a review from only Copilot so it can provide another review.
 
-Do not repeat this process more than 2 times. If Copilot and Codex still have actionable feedback after 2 rounds, step back and reconsider the implementation from first principles.
+Do not repeat this process more than 2 times. If Copilot has actionable feedback after 2 rounds, step back and reconsider the implementation from first principles.
 
 Keep an eye on changes to `main` and rebase when needed. If an overlapping PR makes this one obsolete, stop monitoring, report it to the user, and ask before closing the PR unless closure was explicitly authorized.
 
