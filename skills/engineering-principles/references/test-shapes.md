@@ -2,7 +2,12 @@
 
 Open this file when you write a test, or when you review a test and doubt its assertion. `SKILL.md` states the rule. This file lists the five shapes that break the rule, the assertions to look for in each language, and the fix.
 
-Ask two questions of a test. Would it still pass if the code under test did nothing, meaning it returned `null`, an empty list, or a default, or never ran? Does the assertion compare the result with a literal value that the test wrote down? Each shape below fails one of the two.
+Ask two questions of a test:
+
+1. Would the test still pass if the code under test did nothing? "Did nothing" means that the code returned `null`, an empty list, or a default value, or that the code never ran.
+2. Does the assertion compare the result with a literal value that the test wrote down?
+
+Each shape below fails one of the two questions.
 
 ## The five shapes
 
@@ -17,7 +22,7 @@ The test asserts only that a value exists, that a collection has some size, or t
 
 ### Call or absence only
 
-The test asserts only that a collaborator was called, or that something is empty, null, or absent. An absence is also what you get when nothing ran. A call shows that the code reached a collaborator, not that the caller got the right result.
+The test asserts only that a collaborator was called, or that something is empty, null, or absent. The same absence appears when nothing ran. A call shows that the code reached a collaborator, not that the caller got the right result.
 
 - Kotlin: `assertNull(error)`, `assertTrue(results.isEmpty())`, a check that a fake recorded one call.
 - Swift: `XCTAssertNil(error)`, `XCTAssertTrue(routes.isEmpty)`.
