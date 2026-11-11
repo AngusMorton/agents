@@ -60,7 +60,7 @@ GOOD
 
 Include screenshots in the PR description for UI changes, before/after screenshots are very helpful for reviewers. Always use the `gh` CLI to attach files (--attach).
 
-Open a draft PR and request a review from Copilot, then comment "@codex review" to request a review from Codex.
+Open a draft PR and request a review from Copilot.
 
 If the branch has a failing-test commit followed by its fix, open the PR with only the failing-test commit. Push the fix after CI shows it red, as [Show red, then green](../engineering-principles/SKILL.md#show-red-then-green) describes. Request the reviews only after the fix is pushed, so the bots review the whole change.
 

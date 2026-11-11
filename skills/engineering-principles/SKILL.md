@@ -18,7 +18,7 @@ Some rules conflict. Where two rules conflict, this page gives a default and the
 Before you call a change done, check the result in the place where each consumer of the change uses it. A consumer is a person or a system that uses the result. For example, a traveller looks at a screen, the data team queries a table in BigQuery, and another service reads an API response. A green build, a clean type check, and your reading of the diff are not proof.
 
 - Run the real thing: the app on a device or emulator, the endpoint in an ephemeral environment, the dbt model on the dev target. Read the actual value, not a cached or derived copy.
-- Match the evidence to the change. For a UI change, take before and after screenshots of the same screen in the same state. For a bug, capture the repro output before and after the fix. For data, show the real event payload or query result.
+- Match the evidence to the change. For a UI change, take before and after screenshots or videos of the same screen in the same state. For a bug, capture the repro output before and after the fix. For data, show the real event payload or query result.
 - For a measured number, give the run count and the spread. Measure the baseline before you make the change, and measure before and after the same way. Rule out what else explains the number: errors, a debug build compared with a release build, a warm start compared with a cold start, a BigQuery result served from cache.
 - Prefer a check that a reviewer can rerun, such as a test, a script, or a saved query. Paste the output.
 - You can read production data. Never write to production and never deploy to it. Query the smallest date range that answers the question, and check how many bytes a BigQuery query scans before you run it.
