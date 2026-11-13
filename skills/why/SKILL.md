@@ -1,13 +1,13 @@
 ---
 name: why
-description: "Use only when asked for by name. for 'why does X work this way', 'why we picked Y', design rationale, regressions, postmortems, or data-backed thresholds."
+description: "Use when the user asks for it, or when another skill such as deliver or fix-issue tells you to. Answers 'why does X work this way', 'why we picked Y', design rationale, regressions, postmortems, or data-backed thresholds. Don't start it on your own otherwise."
 ---
 
 # Why
 
 Investigate the motivation and intent behind code. The companion `how` skill answers what the code does and how it works. `why` answers what forces led to its shape.
 
-Investigators are Sonnet 5.5 subagents. The synthesizer is an Opus 5.5 subagent. Neither writes files, commits, or changes external state. Both need MCP access, so don't use a read-only mode that strips it.
+Investigators are Sonnet 5.5 subagents. The synthesizer is an Opus 5.5 subagent. Neither writes files, commits, or changes external state. Both need MCP access, so don't use a read-only mode that strips it. If you can't spawn subagents, for example because you are one, search each source yourself and then write the synthesis with the same prompts.
 
 ## Operating Posture
 

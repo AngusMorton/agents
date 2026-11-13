@@ -31,7 +31,7 @@ If it won't reproduce directly, synthesize the trigger, tighten the conditions, 
 
 ## 3. Find the root cause
 
-Apply [Fix the root cause](../engineering-principles/SKILL.md#fix-the-root-cause) throughout this step. List the candidate causes, then rule them out with evidence until one survives. If you don't know the subsystem, use the `how` skill on it first so the candidates come from how the code actually works. Each pass, test the split that rules out the most remaining candidates. Get evidence by running code, adding temporary logging, or reading the real value. Don't guess.
+Apply [Fix the root cause](../engineering-principles/SKILL.md#fix-the-root-cause) throughout this step. Before you list candidate causes, run the `how` skill on the subsystem the bug is in, so the candidates come from how the code works and not from a guess. If you hand the investigation or the fix to a subagent, tell it to run `how` first too. Then list the candidate causes, and rule them out with evidence until one survives. Each pass, test the split that rules out the most remaining candidates. Get evidence by running code, adding temporary logging, or reading the real value. Don't guess.
 
 The line that throws is often not the line that's wrong. Keep asking why the bad state exists until you reach the code that created it. When the bug is a regression, or before you change defensive or odd-looking code, use the `why` skill on it. Scope it to source control and the error tracker unless the user asks for a wider search. The code may exist for a reason it doesn't show.
 

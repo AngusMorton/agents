@@ -7,7 +7,7 @@ description: "Use for \"how does X work\", code walkthroughs before changing som
 
 Explore the codebase to answer "how does X work?" questions. Produce architectural explanations at the level of a senior engineer onboarding onto a subsystem, enough to build a working mental model, not so much that it reads like annotated source code.
 
-Explorers are read-only Sonnet 5.5 subagents. The explainer is a read-only Opus 5.5 subagent.
+Explorers are read-only Sonnet 5.5 subagents. The explainer is a read-only Opus 5.5 subagent. If you can't spawn subagents, for example because you are one, do the explainer's job yourself with `references/explainer-prompt.md`.
 
 ## 1. Assess complexity
 

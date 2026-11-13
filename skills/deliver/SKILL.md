@@ -23,7 +23,10 @@ Load `engineering-principles` and apply every section that matches the task. The
 
 - For a bug, use `fix-issue`. Don't use it for features or config changes.
 - For a change to shared code, dependencies, or a data contract, use `blast-radius`.
-- For a subsystem you don't know, use `how`.
+
+Before you change any code, run the `how` skill on each subsystem the change touches. Reading the file you plan to edit is not the same as knowing how its subsystem works. If the change moves ownership or layering, or changes defensive or odd-looking code, also run the `why` skill on that code. Scope `why` to source control and the error tracker unless the user asks for more.
+
+If you hand the change to a subagent, tell it to run `how` the same way before it edits anything.
 
 ## 3. Make the change
 
