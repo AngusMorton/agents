@@ -10,3 +10,6 @@
 * Test are good! Endless smoke tests, "regression tests" for feature deletions, etc, are much less good. Tests should be focused, not slop.
 * Comments are a great way to communicate non-obvious requirements or behaviors. A comment says how to use something or why it's this way. Never what the next line does, what changed (that goes in the commit message), or a defence of code you could reshape instead.
 
+## Subagents
+* Use Opus 5.5 by default.
+* Use Sol 6.2 for code review.
