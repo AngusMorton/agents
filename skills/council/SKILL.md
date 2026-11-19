@@ -1,6 +1,6 @@
 ---
 name: council
-description: Asks Claude Fable 5.2 and GPT Astra 6.2 in parallel for a review or a second opinion, for at most two rounds. Use when the user says "council".
+description: Asks Claude Fable 5.2 and GPT Astra 6.2 in parallel for a review or a second opinion, and repeats until both members score the work at or above a pass mark, for at most three rounds. Use when the user says "council". Takes an optional pass mark out of 10, as in "/council 9".
 ---
 
 # Council
@@ -28,15 +28,18 @@ Write one brief and send it to both members:
 
 Leave out your own conclusion. A member who reads your answer tends to agree with it.
 
-## Run at most two rounds
+## Run rounds until the council passes
 
 A round is one answer from each member.
+
+The pass mark is the number after `/council`, such as `/council 9` or `/council 7.5`. If the user gives no number, the pass mark is 7.
 
 1. Run round 1.
 2. Check each finding against the code as it arrives, while the other member still runs. Don't edit files while a member still reviews the same checkout.
 3. Fix the findings you can prove. Dismiss the rest with a reason.
-4. Run round 2 only if round 1 changed the code or the members disagree. For a review, send the updated diff. For a question, send each member the other member's answer and ask where it still disagrees.
-5. Stop after round 2, even if a member is still unsatisfied.
+4. For a review, stop when every member scores the work at or above the pass mark. A member with no score has not passed. For a question, stop when the members agree.
+5. Otherwise, run the next round. For a review, send the updated diff. For a question, send each member the other member's answer and ask where it still disagrees.
+6. Stop after round 3, even if the council has not passed. The report says so.
 
 Keep the scope to the user's request. If a member asks for work outside it, list the request in the report and don't do it.
 
@@ -44,6 +47,7 @@ Keep the scope to the user's request. If a member asks for work outside it, list
 
 Reply with:
 
+- Whether the council passed, the pass mark, and the number of rounds.
 - The findings both members agree on, and what you did about each.
 - Each disagreement, with both members quoted, for the user to decide.
 - Any risk only one member raised.
@@ -53,7 +57,7 @@ For a code review that ends in a PR, add this section to the end of the PR descr
 ```markdown
 ## Council review
 
-Rounds: 2
+Pass mark: 9/10. Passed in round 2.
 
 | Member | Round 1 | Round 2 |
 | --- | --- | --- |
@@ -61,4 +65,4 @@ Rounds: 2
 | Astra 6.2 | 8/10 | 9/10 |
 ```
 
-If a member gives no score, write `no score`. If there is no PR, put the table in the reply.
+Add a column for each round you ran. If the council did not pass, write `Not passed after round 3.` If a member gives no score, write `no score`. If there is no PR, put the table in the reply.
