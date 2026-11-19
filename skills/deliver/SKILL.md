@@ -9,6 +9,8 @@ Run every step in order. If you skip a step, say which one and why when you hand
 
 When you brief another thread, write "Use `deliver`" instead of listing these steps.
 
+If you can't continue without the user, ask with your harness's question tool: `AskUserQuestion` in Claude Code or `request_user_input` in Codex. A question in a plain reply makes the thread look finished. Put the context in the question: the PR link if there is one, what blocks you, and the options with your recommendation first. Decide everything else yourself and list those decisions when you hand back.
+
 ## 1. Write down the goal
 
 Before you read code, restate the user's task as one to three outcomes a reviewer can check. For example: "Play Store links carry `web_aqid` in the referrer." 
@@ -66,8 +68,12 @@ Use `babysit-pr`. Before you act on a bot finding, check that this PR introduced
 
 ## 8. Hand back
 
-Don't merge. Reply with:
+Don't merge. Fetch the base branch, then check the PR's checks, reviews, and mergeability. Reply with:
 
-- The PR link.
+- The PR link and one verdict:
+  - **Ready to merge.** Checks pass, every review finding is fixed or dismissed, and GitHub reports the PR as mergeable.
+  - **Waiting on approval.** A human approval is the only thing left.
+  - **Blocked.** Say what blocks the PR, what you tried, and what you need.
 - How you proved each outcome, and any outcome you couldn't prove.
 - What `/simplify` and the Review Loop changed, and the findings you dismissed and why.
+- The decisions you made without asking the user.
