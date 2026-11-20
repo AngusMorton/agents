@@ -72,7 +72,9 @@ Scopes are optional, use the affected package or area when helpful.
 
 ## PR Descriptions
 
-Open the description with a simple explanation of the problem based on the user's original prompt, then briefly explain the solution. Apply the `technical-writing` skill to the PR description. Do not lead with an implementation inventory:
+The reader is a reviewer who never saw your thread. The description says why the change exists, what changed, and proves the change is safe. Apply the `technical-writing` skill to it.
+
+Open the description with a simple explanation of the problem based on the user's original prompt, so the reader understands why. Then briefly explain the solution. Do not lead with an implementation inventory:
 
 BAD
 > Remove implicit workspace carry-over from every "new thread" entry point (cmd +n / cmd+shift+o, sidebar v1/v2 buttons, command palette). New threads inherit only the project from context; branch, worktree, and env mode always come from the configured defaults. Deleted buildContextualThreadOptions, startNewThreadInProjectFromContext, and the v1 sidebar's seed-context machinery.
@@ -80,12 +82,72 @@ BAD
 GOOD
 > The "new worktree" default was ignored when starting new threads on existing worktrees, which was unintuitive. Now user preferences always apply.
 
-Include screenshots in the PR description for UI changes, before/after screenshots are very helpful for reviewers. Always use the `gh` CLI to attach files (--attach).
+### Describe the code, not the thread
+
+The reviewer needs the why from the prompt, not the history of the thread. Leave these out of the description:
+
+- Who asked, agreed, approved, or decides. State the behaviour as a fact.
+- How the change differs from the brief, the spec, an audit, or a proposed direction. Describe what the code does. If you departed from what the user asked, say so in the hand-back.
+- Questions and recommendations for the user. Ask them in the thread.
+- Review history: which reviewer or bot found what, which commit answered it, and earlier versions of the PR. The red and green CI links, and the "Council review" section from the `council` skill, are the exceptions.
+- Follow-ups and `agent-feedback` items you filed. Mention one only when the reviewer needs it to judge this PR, and then name it or link it. "Left for a follow-up" tells the reviewer nothing.
+
+BAD
+> Angus agreed to these limits:
+> - Luxury-Hotels-In opens the plain hotel list, because the hotels screen has no luxury filter.
+
+GOOD
+> `/s/Luxury-Hotels-In/{place}` opens the plain hotel list. The hotels screen has no luxury filter.
+
+BAD
+> This differs from the brief in one way: the three callers that let the browser navigate still needed one line each.
+
+GOOD
+> The three anchors that let the browser navigate also pass the handler to `onAuxClick`.
+
+BAD
+> Whether to put this behind a flag is your call. I recommend shipping without a flag.
+
+GOOD
+> Logged exits step up by about 0.1% at deploy, because middle clicks start to count. Tell the data team the deploy date.
+
+### Keep only the evidence a reviewer needs
+
+A reviewer should finish the description in about a minute, as `technical-writing` says. Aim for under 400 words of prose. Tables, code blocks, and `<details>` blocks don't count. Scale the proof to the risk: a refactor with no visible change needs one line of proof, not a screenshot grid. Keep what shows the change is safe:
+
+- The before and after evidence.
+- The red and green CI links, when the PR has a failing-test commit.
+- The numbers that size the risk, such as traffic or revenue on the affected path.
+- What changes at deploy, and how to check it after release.
+
+Cut the rest:
+
+- Full scripts and long queries. Commit a script the reviewer will rerun, or put it in a collapsed `<details>` block.
+- Every command that passed. One line names the gates.
+- Long lists of what you didn't check. Name only the gap that could hide a bug in this PR.
+- Restated design notes the diff already shows.
+
+### Show transitions with video
+
+Match the media to what the reviewer needs to see. Attach files with `gh pr create --attach` or `gh pr edit --attach`. Both take images and videos.
+
+- For a change in how the UI moves between states, record a video of the before and the after. This covers loading, a placeholder that fills, an error and its retry, animation, focus, and timing. A series of stills can't show a transition or how long it takes.
+- For a static result, take before and after screenshots of the same screen in the same state.
+
+BAD
+> Four screenshots of a sticky footer ad: pending before, pending after, closed before, closed after.
+
+GOOD
+> A video of the placeholder loading into an ad, and a video of an ad that doesn't fill, each before and after.
+
+## Open the PR
 
 Open a draft PR and request a review from Copilot.
 
 If the branch has a failing-test commit followed by its fix, open the PR with only the failing-test commit. Push the fix after CI shows it red, as [Show red, then green](../engineering-principles/SKILL.md#show-red-then-green) describes. Request the reviews only after the fix is pushed, so the bots review the whole change.
 
-After every push ensure that the description matches the branch.
+After every push, rewrite the description to match the branch. Describe the final diff as if it were the first version. Don't add notes about what changed since the last push, which commits came before a rebase, or that a proof ran on an earlier commit. If a later commit changes the behaviour, prove it again on the head.
+
+Before you hand back, read the posted description with `gh pr view --json body`. Check that every image and video is a `github.com/user-attachments` URL and not a local path such as `./err-sheet.png`, that nothing in it names the thread, the brief, or a reviewer, and that it still reads in about a minute.
 
 If the user also asked to babysit it, continue with the `babysit-pr` skill.

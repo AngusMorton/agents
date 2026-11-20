@@ -51,12 +51,12 @@ Prove each outcome from step 1 on the final code, in the running artifact. Passi
 
 Match the evidence to the change:
 
-- UI: before and after screenshots of the same screen in the same state.
+- UI: before and after screenshots of the same screen in the same state. For a state change, such as loading, an error, an animation, or focus, record before and after videos.
 - Bug: the repro output before and after the fix.
 - Performance: before and after measurements, with the run count and spread.
 - Analytics or data: the real event payload or query result.
 
-If you can't reach an environment where the change runs, ask the user for one. If an outcome stays unproven, say so in the PR and the hand-back. Don't describe it as tested.
+If you can't reach an environment where the change runs, ask the user for one. If an outcome stays unproven, say so in one line in the PR, and in full in the hand-back. Don't describe it as tested.
 
 ## 6. File the PR
 
@@ -76,4 +76,4 @@ Don't merge. Fetch the base branch, then check the PR's checks, reviews, and mer
   - **Blocked.** Say what blocks the PR, what you tried, and what you need.
 - How you proved each outcome, and any outcome you couldn't prove.
 - What `/simplify` and the Review Loop changed, and the findings you dismissed and why.
-- The decisions you made without asking the user.
+- The decisions you made without asking the user, and each place the change differs from what the user asked. These go here and never in the PR description.
